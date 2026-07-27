@@ -3,219 +3,217 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Appendix A | VLM Prompt</title>
+  <title>Appendix A | VLM Prompt and Output Format</title>
   <style>
+    :root {
+      --blue: #1f3c88;
+      --text: #222;
+      --muted: #666;
+      --line: #d9d9d9;
+      --bg: #f7f8fb;
+      --box: #ffffff;
+      --pre: #f1f3f8;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.7;
-      color: #222;
-      background: #f7f8fb;
     }
+
     .container {
       max-width: 980px;
       margin: 0 auto;
-      padding: 40px 24px 64px;
+      padding: 36px 20px 60px;
     }
-    .nav {
-      font-size: 14px;
-      margin-bottom: 24px;
-      color: #666;
-    }
-    .nav a {
-      color: #1f3c88;
+
+    .toplink {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--blue);
       text-decoration: none;
       font-weight: 600;
     }
-    .nav a:hover {
-      text-decoration: underline;
+
+    .toplink:hover { text-decoration: underline; }
+
+    .header {
+      background: var(--box);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 22px;
     }
+
+    .box {
+      background: var(--box);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px 22px;
+      margin-bottom: 20px;
+    }
+
+    h1, h2, h3 {
+      color: var(--blue);
+      margin-top: 0;
+    }
+
     h1 {
-      color: #1f3c88;
-      font-size: 40px;
+      font-size: 1.9rem;
       margin-bottom: 10px;
     }
-    .intro {
-      color: #555;
-      margin-bottom: 28px;
+
+    .lead {
+      color: #444;
+      margin: 0;
     }
-    .card {
-      background: #fff;
-      border: 1px solid #e2e6ef;
-      border-radius: 14px;
-      padding: 24px 28px;
-      margin-bottom: 22px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-    }
-    .card h2 {
-      margin-top: 0;
-      color: #1f3c88;
-      font-size: 28px;
-    }
+
     pre {
       white-space: pre-wrap;
-      word-break: break-word;
-      background: #f4f6fa;
-      border: 1px solid #dde3ef;
-      border-radius: 10px;
+      word-wrap: break-word;
+      background: var(--pre);
+      border: 1px solid #dde2ec;
+      border-radius: 12px;
       padding: 18px;
       overflow-x: auto;
-      font-family: Consolas, Monaco, monospace;
-      font-size: 14px;
-      line-height: 1.65;
-      color: #222;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.96rem;
+      line-height: 1.55;
+      margin: 12px 0 0;
+    }
+
+    ul {
+      margin-top: 8px;
+      padding-left: 22px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    code {
+      background: #eef2ff;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: "Courier New", Courier, monospace;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="nav">
-      <a href="index.html">← Back to Online Appendix</a>
-    </div>
+    <a class="toplink" href="index.html">← Back to Online Appendix Home</a>
 
-    <h1>Appendix A. VLM Prompt</h1>
-    <div class="intro">
-      This appendix provides the full prompt materials used for VLM-based road-environment assessment.
-    </div>
+    <section class="header">
+      <h1>Appendix A. VLM Prompt and Output Format</h1>
+      <p class="lead">
+        This appendix provides the full prompt structure used for GPT-4o-based road-scene
+        evaluation, including the system prompt, user prompt, and expected JSON response format.
+      </p>
+    </section>
 
-    <div class="card">
-      <h2>Appendix A.1 System Prompt</h2>
-      <pre>You are an expert in transportation engineering, road environment assessment, and human perception of urban streets.
+    <section class="box">
+      <h2>Appendix A.1. System Prompt</h2>
+      <pre>You are an expert in transportation engineering, environmental perception, and driver-oriented road-scene assessment.
 
-Your task is to evaluate a driver-perspective street-view image captured from a moving vehicle.
+Your task is to evaluate a driver-perspective street-view image using only the information that is directly visible in the image.
 
-Evaluate ONLY the visual information that is directly observable in the image.
+Please follow these principles strictly:
+1. Evaluate the scene from the perspective of a driver traveling through the road environment.
+2. Use only visible visual evidence in the image.
+3. Do not infer hidden conditions, future conditions, or broader neighborhood characteristics that are not directly shown.
+4. Evaluate each attribute independently.
+5. Use a 7-point Likert-type scale for each attribute.
+6. Scores may include decimal values when needed for finer judgment.
+7. Return only a valid JSON object with the required fields.
 
-Do NOT infer information that cannot be visually confirmed.
+Evaluate the following five perceptual attributes:
 
-Do NOT estimate future traffic conditions.
+- greenery:
+  The extent to which vegetation such as trees, grass, shrubs, or planting is visibly present in the road scene.
 
-Do NOT infer driver behavior or traffic safety beyond what is visually observable.
+- openness:
+  The extent to which the road environment appears spatially open, broad, and visually unobstructed.
 
-Ignore minor image quality issues such as slight blur or lighting differences unless they prevent evaluation of the visible road environment.
+- complexity:
+  The extent to which the visual environment appears busy, dense, cluttered, or compositionally complicated.
 
-Evaluate each attribute independently.
+- safety:
+  The extent to which the road environment appears safe, orderly, and comfortable from a driver's perspective.
 
-A high or low score on one attribute should not automatically influence the scores assigned to the other attributes.
+- stress:
+  The extent to which the road environment appears likely to induce tension, burden, or psychological strain while driving.
+
+Use the 1-7 scale as follows:
+1 = very low
+2 = low
+3 = somewhat low
+4 = neutral
+5 = somewhat high
+6 = high
+7 = very high
 
 Return only the requested JSON object.</pre>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>Appendix A.2 User Prompt</h2>
+    <section class="box">
+      <h2>Appendix A.2. User Prompt</h2>
       <pre>Please evaluate this driver-perspective street-view image.
 
-Rate each attribute using a 7-point Likert scale.
+Important instructions:
+- Base your judgment only on what is directly visible in the image.
+- Evaluate the scene as a driver would perceive it while traveling.
+- Do not infer conditions outside the frame.
+- Score each attribute independently.
+- Use a 1-7 scale.
+- Decimal values are allowed when needed for finer evaluation.
+- Return ONLY valid JSON.
 
-1 = Very Low
-2 = Low
-3 = Slightly Low
-4 = Neutral
-5 = Slightly High
-6 = High
-7 = Very High
+Attributes to score:
+1. greenery
+2. openness
+3. complexity
+4. safety
+5. stress
 
-Evaluate the following five perceptual attributes independently.
-
-1. Greenery
-
-Evaluate the amount of visible vegetation in the driver's field of view.
-
-Consider:
-- trees
-- grass
-- shrubs
-- roadside vegetation
-- other visible natural landscape elements
-
-Do not count artificial green colors, advertisements, signs, or painted surfaces as vegetation.
-
-2. Openness
-
-Evaluate how visually open and spacious the road environment appears.
-
-Consider:
-- visible sky
-- long viewing distance
-- roadway width
-- spatial openness
-- absence of strong visual enclosure
-
-Low openness may be associated with dense roadside buildings, narrow streets, walls, tunnels, or other visually enclosed environments.
-
-3. Visual Complexity
-
-Evaluate the amount and diversity of visual information in the road scene.
-
-Consider:
-- buildings
-- vehicles
-- traffic signs
-- lane markings
-- roadside facilities
-- advertisements
-- intersections
-- street furniture
-- other visible objects and structures
-
-Higher scores indicate a greater amount and diversity of visual information.
-
-4. Perceived Safety
-
-Evaluate how safe the road environment appears for driving based only on visible physical characteristics.
-
-Consider:
-- road geometry
-- forward visibility
-- lane organization
-- roadside condition
-- apparent traffic order
-- visible obstacles
-
-Do not infer actual crash risk or use information that is not visible in the image.
-
-5. Driving Stress
-
-Evaluate how visually stressful the road environment appears for a driver.
-
-Consider:
-- visual clutter
-- dense or disordered traffic
-- complicated intersections
-- roadway complexity
-- narrow roadway space
-- roadside obstacles
-- overall visual pressure
-
-Higher scores indicate greater perceived driving stress.
-
-Evaluate only what is visible in the image.
-
-Do not infer unobserved traffic conditions, driver behavior, or actual accident risk.
-
-Do not explain your reasoning.
-
-Return ONLY valid JSON in the following format:
+Return the result in the following JSON format:
 
 {
-  "greenery": integer,
-  "openness": integer,
-  "visual_complexity": integer,
-  "perceived_safety": integer,
-  "driving_stress": integer
+  "greenery": number,
+  "openness": number,
+  "complexity": number,
+  "safety": number,
+  "stress": number
 }</pre>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>Appendix A.3 Expected JSON Output</h2>
+    <section class="box">
+      <h2>Appendix A.3. Expected JSON Output</h2>
+      <p class="small">
+        The response was parsed as structured JSON. The field names below reflect the final
+        attribute names used in the manuscript and analysis code.
+      </p>
       <pre>{
-  "greenery": integer,
-  "openness": integer,
-  "visual_complexity": integer,
-  "perceived_safety": integer,
-  "driving_stress": integer
+  "greenery": 4.5,
+  "openness": 5.0,
+  "complexity": 3.5,
+  "safety": 4.0,
+  "stress": 2.5
 }</pre>
-    </div>
+
+      <h3>Field Notes</h3>
+      <ul>
+        <li><code>greenery</code>: visible vegetation in the road scene</li>
+        <li><code>openness</code>: perceived spatial openness of the scene</li>
+        <li><code>complexity</code>: degree of visual density or clutter</li>
+        <li><code>safety</code>: apparent safety and comfort for a driver</li>
+        <li><code>stress</code>: apparent level of strain or tension while driving</li>
+      </ul>
+    </section>
   </div>
 </body>
 </html>

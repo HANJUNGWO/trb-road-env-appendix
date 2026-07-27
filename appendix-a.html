@@ -1,64 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Appendix A | VLM Prompt</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
       line-height: 1.7;
-      max-width: 950px;
-      margin: 40px auto;
-      padding: 0 20px;
       color: #222;
-      background: #ffffff;
+      background: #f7f8fb;
     }
-    h1, h2 {
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 24px 64px;
+    }
+    .nav {
+      font-size: 14px;
+      margin-bottom: 24px;
+      color: #666;
+    }
+    .nav a {
       color: #1f3c88;
+      text-decoration: none;
+      font-weight: 600;
     }
-    .box {
-      border: 1px solid #d9d9d9;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 20px 0;
-      background: #fafafa;
+    .nav a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      color: #1f3c88;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .intro {
+      color: #555;
+      margin-bottom: 28px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e2e6ef;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #1f3c88;
+      font-size: 28px;
     }
     pre {
       white-space: pre-wrap;
-      word-wrap: break-word;
-      background: #f4f4f4;
-      padding: 16px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
+      word-break: break-word;
+      background: #f4f6fa;
+      border: 1px solid #dde3ef;
+      border-radius: 10px;
+      padding: 18px;
       overflow-x: auto;
       font-family: Consolas, Monaco, monospace;
       font-size: 14px;
-      line-height: 1.6;
-    }
-    a {
-      color: #0b57d0;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .toplink {
-      margin-bottom: 20px;
-      display: inline-block;
+      line-height: 1.65;
+      color: #222;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="nav">
+      <a href="index.html">← Back to Online Appendix</a>
+    </div>
 
-  <a class="toplink" href="index.html">← Back to Online Appendix</a>
+    <h1>Appendix A. VLM Prompt</h1>
+    <div class="intro">
+      This appendix provides the full prompt materials used for VLM-based road-environment assessment.
+    </div>
 
-  <h1>Appendix A. VLM Prompt</h1>
-  <p>This appendix provides the full prompt materials used for VLM-based road-environment assessment.</p>
-
-  <div class="box">
-    <h2>Appendix A.1 System Prompt</h2>
-    <pre>You are an expert in transportation engineering, road environment assessment, and human perception of urban streets.
+    <div class="card">
+      <h2>Appendix A.1 System Prompt</h2>
+      <pre>You are an expert in transportation engineering, road environment assessment, and human perception of urban streets.
 
 Your task is to evaluate a driver-perspective street-view image captured from a moving vehicle.
 
@@ -77,11 +99,11 @@ Evaluate each attribute independently.
 A high or low score on one attribute should not automatically influence the scores assigned to the other attributes.
 
 Return only the requested JSON object.</pre>
-  </div>
+    </div>
 
-  <div class="box">
-    <h2>Appendix A.2 User Prompt</h2>
-    <pre>Please evaluate this driver-perspective street-view image.
+    <div class="card">
+      <h2>Appendix A.2 User Prompt</h2>
+      <pre>Please evaluate this driver-perspective street-view image.
 
 Rate each attribute using a 7-point Likert scale.
 
@@ -182,18 +204,18 @@ Return ONLY valid JSON in the following format:
   "perceived_safety": integer,
   "driving_stress": integer
 }</pre>
-  </div>
+    </div>
 
-  <div class="box">
-    <h2>Appendix A.3 Expected JSON Output</h2>
-    <pre>{
+    <div class="card">
+      <h2>Appendix A.3 Expected JSON Output</h2>
+      <pre>{
   "greenery": integer,
   "openness": integer,
   "visual_complexity": integer,
   "perceived_safety": integer,
   "driving_stress": integer
 }</pre>
+    </div>
   </div>
-
 </body>
 </html>

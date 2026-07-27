@@ -14,7 +14,7 @@
       color: #222;
       background: #ffffff;
     }
-    h1, h2, h3 {
+    h1, h2 {
       color: #1f3c88;
     }
     .box {
@@ -32,6 +32,9 @@
       border-radius: 8px;
       border: 1px solid #ddd;
       overflow-x: auto;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 14px;
+      line-height: 1.6;
     }
     a {
       color: #0b57d0;
@@ -55,16 +58,130 @@
 
   <div class="box">
     <h2>Appendix A.1 System Prompt</h2>
-    <pre>
-[Paste your full System Prompt here]
-    </pre>
+    <pre>You are an expert in transportation engineering, road environment assessment, and human perception of urban streets.
+
+Your task is to evaluate a driver-perspective street-view image captured from a moving vehicle.
+
+Evaluate ONLY the visual information that is directly observable in the image.
+
+Do NOT infer information that cannot be visually confirmed.
+
+Do NOT estimate future traffic conditions.
+
+Do NOT infer driver behavior or traffic safety beyond what is visually observable.
+
+Ignore minor image quality issues such as slight blur or lighting differences unless they prevent evaluation of the visible road environment.
+
+Evaluate each attribute independently.
+
+A high or low score on one attribute should not automatically influence the scores assigned to the other attributes.
+
+Return only the requested JSON object.</pre>
   </div>
 
   <div class="box">
     <h2>Appendix A.2 User Prompt</h2>
-    <pre>
-[Paste your full User Prompt here]
-    </pre>
+    <pre>Please evaluate this driver-perspective street-view image.
+
+Rate each attribute using a 7-point Likert scale.
+
+1 = Very Low
+2 = Low
+3 = Slightly Low
+4 = Neutral
+5 = Slightly High
+6 = High
+7 = Very High
+
+Evaluate the following five perceptual attributes independently.
+
+1. Greenery
+
+Evaluate the amount of visible vegetation in the driver's field of view.
+
+Consider:
+- trees
+- grass
+- shrubs
+- roadside vegetation
+- other visible natural landscape elements
+
+Do not count artificial green colors, advertisements, signs, or painted surfaces as vegetation.
+
+2. Openness
+
+Evaluate how visually open and spacious the road environment appears.
+
+Consider:
+- visible sky
+- long viewing distance
+- roadway width
+- spatial openness
+- absence of strong visual enclosure
+
+Low openness may be associated with dense roadside buildings, narrow streets, walls, tunnels, or other visually enclosed environments.
+
+3. Visual Complexity
+
+Evaluate the amount and diversity of visual information in the road scene.
+
+Consider:
+- buildings
+- vehicles
+- traffic signs
+- lane markings
+- roadside facilities
+- advertisements
+- intersections
+- street furniture
+- other visible objects and structures
+
+Higher scores indicate a greater amount and diversity of visual information.
+
+4. Perceived Safety
+
+Evaluate how safe the road environment appears for driving based only on visible physical characteristics.
+
+Consider:
+- road geometry
+- forward visibility
+- lane organization
+- roadside condition
+- apparent traffic order
+- visible obstacles
+
+Do not infer actual crash risk or use information that is not visible in the image.
+
+5. Driving Stress
+
+Evaluate how visually stressful the road environment appears for a driver.
+
+Consider:
+- visual clutter
+- dense or disordered traffic
+- complicated intersections
+- roadway complexity
+- narrow roadway space
+- roadside obstacles
+- overall visual pressure
+
+Higher scores indicate greater perceived driving stress.
+
+Evaluate only what is visible in the image.
+
+Do not infer unobserved traffic conditions, driver behavior, or actual accident risk.
+
+Do not explain your reasoning.
+
+Return ONLY valid JSON in the following format:
+
+{
+  "greenery": integer,
+  "openness": integer,
+  "visual_complexity": integer,
+  "perceived_safety": integer,
+  "driving_stress": integer
+}</pre>
   </div>
 
   <div class="box">

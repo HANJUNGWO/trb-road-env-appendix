@@ -5,111 +5,318 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Appendix B | Human Survey Instrument</title>
   <style>
+    :root {
+      --blue: #1f3c88;
+      --text: #222;
+      --muted: #666;
+      --line: #d9d9d9;
+      --bg: #f7f8fb;
+      --box: #ffffff;
+      --soft: #f1f3f8;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.7;
-      color: #222;
-      background: #f7f8fb;
     }
+
     .container {
       max-width: 980px;
       margin: 0 auto;
-      padding: 40px 24px 64px;
+      padding: 36px 20px 60px;
     }
-    .nav {
-      font-size: 14px;
-      margin-bottom: 24px;
-      color: #666;
-    }
-    .nav a {
-      color: #1f3c88;
+
+    .toplink {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--blue);
       text-decoration: none;
       font-weight: 600;
     }
-    .nav a:hover {
-      text-decoration: underline;
+
+    .toplink:hover { text-decoration: underline; }
+
+    .header {
+      background: var(--box);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 22px;
     }
+
+    .box {
+      background: var(--box);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px 22px;
+      margin-bottom: 20px;
+    }
+
+    .instruction {
+      background: var(--soft);
+      border: 1px solid #dde2ec;
+      border-radius: 14px;
+      padding: 18px 18px 16px;
+      margin-top: 10px;
+    }
+
+    h1, h2, h3 {
+      color: var(--blue);
+      margin-top: 0;
+    }
+
     h1 {
-      color: #1f3c88;
-      font-size: 40px;
+      font-size: 1.9rem;
       margin-bottom: 10px;
     }
-    .intro {
-      color: #555;
-      margin-bottom: 28px;
+
+    p {
+      margin: 0 0 12px;
     }
-    .card {
-      background: #fff;
-      border: 1px solid #e2e6ef;
-      border-radius: 14px;
-      padding: 24px 28px;
-      margin-bottom: 22px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+
+    ul, ol {
+      margin-top: 8px;
+      padding-left: 22px;
     }
-    .card h2 {
-      margin-top: 0;
-      color: #1f3c88;
-      font-size: 28px;
+
+    li { margin-bottom: 8px; }
+
+    .scale-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.97rem;
     }
-    pre {
-      white-space: pre-wrap;
-      word-break: break-word;
-      background: #f4f6fa;
-      border: 1px solid #dde3ef;
-      border-radius: 10px;
-      padding: 18px;
-      overflow-x: auto;
-      font-family: Consolas, Monaco, monospace;
-      font-size: 14px;
-      line-height: 1.65;
-      color: #222;
+
+    .scale-table th,
+    .scale-table td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .scale-table th {
+      background: #eef2ff;
+      color: var(--blue);
+    }
+
+    .item {
+      background: #fafbfe;
+      border: 1px solid #e3e7f0;
+      border-radius: 12px;
+      padding: 16px 16px;
+      margin-top: 12px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section-label {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="nav">
-      <a href="index.html">← Back to Online Appendix</a>
-    </div>
+    <a class="toplink" href="index.html">← Back to Online Appendix Home</a>
 
-    <h1>Appendix B. Human Survey Instrument</h1>
-    <div class="intro">
-      This appendix provides the survey instrument used for human validation.
-    </div>
+    <section class="header">
+      <h1>Appendix B. Human Survey Instrument</h1>
+      <p>
+        This appendix provides the questionnaire structure used for the human validation study,
+        including the survey instructions, attribute definitions, response scale, and item format.
+      </p>
+    </section>
 
-    <div class="card">
-      <h2>Survey items</h2>
-      <pre>Participants were asked to evaluate each image using the following five items:
+    <!-- 가장 위로 올린 Survey Instruction -->
+    <section class="box">
+      <div class="section-label">Survey Instruction</div>
+      <h2>Instructions Shown to Participants</h2>
+      <div class="instruction">
+        <p>Please evaluate each road scene based only on what is directly visible in the image.</p>
+        <p>Respond according to your immediate visual impression as a driver.</p>
+        <p>There are no correct or incorrect answers.</p>
+        <p>Do not assume information that is not visible in the image, such as traffic conditions beyond the frame, neighborhood reputation, time-varying conditions, or prior familiarity with the area.</p>
+        <p>Evaluate each item independently. A scene may score high on one attribute and low on another.</p>
+        <p>Use the full 7-point response scale whenever appropriate.</p>
+      </div>
+    </section>
 
-1. The scene feels rich in greenery.
-2. The view feels wide and open.
-3. The scene appears visually complex.
-4. The scene feels safe for driving.
-5. The scene appears likely to cause low driving stress.</pre>
-    </div>
+    <section class="box">
+      <div class="section-label">Survey Structure</div>
+      <h2>Questionnaire Overview</h2>
+      <p>
+        Participants were shown one road-scene image at a time and asked to rate the same set of
+        five perceptual attributes for each image. All evaluations were based solely on visible
+        image content and were intended to reflect immediate driver-oriented perception.
+      </p>
+      <ul>
+        <li>Platform: Google Forms</li>
+        <li>Stimuli: representative driver-perspective road-scene images</li>
+        <li>Response format: 7-point Likert scale</li>
+        <li>Evaluation unit: one image at a time</li>
+        <li>Common instruction applied to all images and all respondents</li>
+      </ul>
+    </section>
 
-    <div class="card">
-      <h2>Response scale</h2>
-      <pre>All items were rated on a 7-point Likert scale:
+    <section class="box">
+      <div class="section-label">Response Scale</div>
+      <h2>7-Point Likert Scale Used in the Survey</h2>
+      <p class="small">
+        The same scale structure was applied across all five perceptual attributes.
+      </p>
+      <table class="scale-table">
+        <thead>
+          <tr>
+            <th>Scale Point</th>
+            <th>Verbal Anchor</th>
+            <th>Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Very low</td>
+            <td>The attribute is almost absent or extremely weak in the scene.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Low</td>
+            <td>The attribute is present only to a limited degree.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Somewhat low</td>
+            <td>The attribute is slightly present but remains below a neutral impression.</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Neutral</td>
+            <td>The scene appears moderate or neither low nor high on the attribute.</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Somewhat high</td>
+            <td>The attribute is meaningfully present above a neutral impression.</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>High</td>
+            <td>The attribute is strongly present in the scene.</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Very high</td>
+            <td>The attribute is extremely prominent in the scene.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-1 = Strongly disagree
-2 = Disagree
-3 = Slightly disagree
-4 = Neutral
-5 = Slightly agree
-6 = Agree
-7 = Strongly agree</pre>
-    </div>
+    <section class="box">
+      <div class="section-label">Attribute Definitions</div>
+      <h2>Definitions Provided for Human Evaluation</h2>
 
-    <div class="card">
-      <h2>Survey instruction</h2>
-      <pre>Please evaluate each road scene based only on what is directly visible in the image.
+      <div class="item">
+        <h3>1. Greenery</h3>
+        <p>
+          The extent to which vegetation such as trees, grass, shrubs, or planting is visibly
+          present in the road scene.
+        </p>
+      </div>
 
-Respond according to your immediate visual impression as a driver.
+      <div class="item">
+        <h3>2. Openness</h3>
+        <p>
+          The extent to which the road environment appears spatially open, broad, and visually
+          unobstructed from the driver's perspective.
+        </p>
+      </div>
 
-There are no correct or incorrect answers.</pre>
-    </div>
+      <div class="item">
+        <h3>3. Complexity</h3>
+        <p>
+          The extent to which the scene appears visually dense, busy, cluttered, or compositionally
+          complicated.
+        </p>
+      </div>
+
+      <div class="item">
+        <h3>4. Safety</h3>
+        <p>
+          The extent to which the road environment appears safe, orderly, and comfortable from a
+          driver's point of view.
+        </p>
+      </div>
+
+      <div class="item">
+        <h3>5. Stress</h3>
+        <p>
+          The extent to which the road environment appears likely to induce tension, burden, or
+          psychological strain while driving.
+        </p>
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="section-label">Question Format</div>
+      <h2>Item Wording Used in the Survey</h2>
+      <p>
+        For each image, participants responded to the following five questions using the 7-point
+        scale shown above.
+      </p>
+
+      <div class="item">
+        <strong>Q1. Greenery</strong><br />
+        How high is the level of greenery visible in this road scene?
+      </div>
+
+      <div class="item">
+        <strong>Q2. Openness</strong><br />
+        How open does this road scene appear from the driver's perspective?
+      </div>
+
+      <div class="item">
+        <strong>Q3. Complexity</strong><br />
+        How visually complex does this road scene appear?
+      </div>
+
+      <div class="item">
+        <strong>Q4. Safety</strong><br />
+        How safe does this road scene appear for a driver?
+      </div>
+
+      <div class="item">
+        <strong>Q5. Stress</strong><br />
+        How stressful does this road scene appear for a driver?
+      </div>
+    </section>
+
+    <section class="box">
+      <div class="section-label">Administration Notes</div>
+      <h2>Survey Administration Notes</h2>
+      <ul>
+        <li>Each image was evaluated independently.</li>
+        <li>Participants were instructed to rely on direct visual impression rather than extended reasoning.</li>
+        <li>The same five items were repeated for every image in the validation set.</li>
+        <li>The image set was designed to cover different route-environment patterns identified in the analysis.</li>
+        <li>Human ratings were later compared with VLM-generated scores for validation analysis.</li>
+      </ul>
+    </section>
   </div>
 </body>
 </html>
+
